@@ -14,13 +14,13 @@ final theme = ThemeData(
   textTheme: const TextTheme(
     bodyMedium: TextStyle(
       color: Colors.black,
-      fontSize: 17,
-      fontWeight: FontWeight.w400,
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
     ),
     bodySmall: TextStyle(
       color: Colors.black,
       fontSize: 14,
-      fontWeight: FontWeight.w300,
+      fontWeight: FontWeight.w400,
     ),
   ),
 );

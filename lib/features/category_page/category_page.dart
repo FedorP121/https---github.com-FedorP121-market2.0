@@ -25,21 +25,26 @@ class CategoryPage extends StatelessWidget {
         builder: (context, state) {
           if (state is LoadedBitrixState) {
             final List<Categories> listTovars = state.listTovars;
-            return ListView.separated(
+            return GridView.builder(
+                padding: const EdgeInsets.all(10),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, // Количество колонок
+                  crossAxisSpacing: 15.0, // отсупы вертикальные
+                  mainAxisSpacing: 15.0, // отсупы горизонтальные
+                ),
+                itemCount: listTovars.length,
                 itemBuilder: (context, index) {
-                  final name = listTovars[index].categoryName;
-                  final imageUrl =
-                      listTovars[index].tovars.elementAt(0).imageUrl;
+                  final data = listTovars[index];
+                  final name = data.categoryName;
+                  final imageUrl = data.tovars.elementAt(0).imageUrl[0];
 
-                  final counterTovars = listTovars[index].tovars.length;
                   return TovarPreviewWidget(
-                      name: name,
-                      imageUrl: imageUrl[0],
-                      counterTovars: counterTovars);
-                },
-                separatorBuilder: (context, index) => const Divider(),
-                itemCount: listTovars.length);
+                    name: name,
+                    imageUrl: imageUrl,
+                  );
+                });
           }
+
           if (state is ErrorBitrixState) {
             final error = state.error;
             return Center(
