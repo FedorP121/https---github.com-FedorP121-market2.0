@@ -31,7 +31,7 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
   GetIt.I.registerLazySingleton<AbstractSharedPreferenceRepository>(
-    () => SharedPreferencesRepository(pref: prefs),
+    () => SharedPreferencesRepository(prefs: prefs),
   );
 
   var app = const CryptoCurrencesListApp();

@@ -13,6 +13,22 @@ class Categories extends Equatable {
 
   @override
   List<Object> get props => [categoryId, categoryName, tovars];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'categoryId': categoryId,
+      'categoryName': categoryName,
+      'tovars': tovars.map((tovar) => tovar.toJson()).toList(),
+    };
+  }
+
+  factory Categories.fromJson(Map<String, dynamic> json) {
+    return Categories(
+      categoryId: json['categoryId'],
+      categoryName: json['categoryName'],
+      tovars: List<Tovar>.from(json['tovars'].map((x) => Tovar.fromJson(x))),
+    );
+  }
 }
 
 class Tovar extends Equatable {
@@ -45,6 +61,30 @@ class Tovar extends Equatable {
       characteristics,
     ];
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'code': code,
+      'name': name,
+      'price': price,
+      'maxCountTovar': maxCountTovar,
+      'imageUrl': imageUrl,
+      'description': description,
+      'characteristics': characteristics.toJson(),
+    };
+  }
+
+  factory Tovar.fromJson(Map<String, dynamic> json) {
+    return Tovar(
+      code: json['code'],
+      name: json['name'],
+      price: json['price'],
+      maxCountTovar: json['maxCountTovar'],
+      imageUrl: List<String>.from(json['imageUrl']),
+      description: json['description'],
+      characteristics: Characteristic.fromJson(json['characteristics']),
+    );
+  }
 }
 
 class Characteristic extends Equatable {
@@ -59,4 +99,20 @@ class Characteristic extends Equatable {
 
   @override
   List<Object?> get props => [width, height, diagonal];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'width': width,
+      'height': height,
+      'diagonal': diagonal,
+    };
+  }
+
+  factory Characteristic.fromJson(Map<String, dynamic> json) {
+    return Characteristic(
+      width: json['width'],
+      height: json['height'],
+      diagonal: json['diagonal'],
+    );
+  }
 }

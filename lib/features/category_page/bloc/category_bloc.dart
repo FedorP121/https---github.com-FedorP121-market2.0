@@ -29,12 +29,28 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       if (state is! LoadedBitrixState) {
         emit(LoadingBitrixState());
       }
+      // считал из битрикса
       final listTovarsFromBitrix = await bitrixRepository.loadTovarFromBitrix();
+
+      // преобразовал у добную модель
       final listTovars =
           abstractWorkingWithData.sortCategoryList(listTovarsFromBitrix);
 
-      emit(LoadedBitrixState(listTovars: listTovars));
+      // записал в SharedPreference
       abstractSharedPreferenceRepository.saveTovarSharedPreference(listTovars);
+
+      // считал с SharedPreference
+      final tovarSharedPreference =
+          await abstractSharedPreferenceRepository.readTovarSharedPreference();
+
+      // создал проверку и обходной путь на случай ошибок SharedPreference
+      if (tovarSharedPreference.isEmpty) {
+        // загрузка данных из listTovars которую мы прямиком получили из сети
+        return emit(LoadedBitrixState(listTovars: listTovars));
+      } else {
+        // загрузка данных из SharedPreference
+        return emit(LoadedBitrixState(listTovars: tovarSharedPreference));
+      }
     } catch (error) {
       emit(ErrorBitrixState(error: error));
     }

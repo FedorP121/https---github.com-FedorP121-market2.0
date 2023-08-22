@@ -45,7 +45,7 @@ class TovarPreviewWidget extends StatelessWidget {
         ),
         TextButton(
             onPressed: () {
-              categoryBloc.add(IndexTransferEvent(categoryId: categoryId));
+              // categoryBloc.add(IndexTransferEvent(categoryId: categoryId));
               Navigator.of(context).pushNamed(Navigation.listTovars);
             },
             child: Container()),
