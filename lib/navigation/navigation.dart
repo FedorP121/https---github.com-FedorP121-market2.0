@@ -9,7 +9,7 @@ class MainNavigation {
   // мапа страниц
   final routes = <String, Widget Function(BuildContext context)>{
     Navigation.categoryPage: (context) => const CategoryPage(),
-    Navigation.listTovars: (context) => ListTovarPage(),
+    Navigation.listTovars: (context) => const ListTovarPage(),
   };
 }
 

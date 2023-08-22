@@ -1,11 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:coin/repositories/bitrix_repository/export_abstract_bitrix.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'export_working_with_data.dart';
 
-class WorkingWithData implements AbstractWorkingWithData {
+class WorkingWithDataRepository implements AbstractWorkingWithData {
   @override
-  List<Categories> sortTovarList(List<TovarsBitrix> listTovarsFromBitrix) {
+  List<Categories> sortCategoryList(List<TovarsBitrix> listTovarsFromBitrix) {
     final Set<Categories> setListTovar = {};
 
     // пробегаемся про пришедшему списку из Bitrix и категории записываем
@@ -24,6 +25,21 @@ class WorkingWithData implements AbstractWorkingWithData {
     }
 
     return setListTovar.toList();
+  }
+
+  @override
+  List<Tovar> sortTovarList(List<Categories> list, int categoryId) {
+    List<Tovar> listTovarByCategory = [];
+    try {
+      for (var element in list) {
+        if (element.categoryId == categoryId) {
+          listTovarByCategory = element.tovars;
+        }
+      }
+    } catch (e) {
+      debugPrint('Категория по коду $categoryId не найдена');
+    }
+    return listTovarByCategory;
   }
 }
 

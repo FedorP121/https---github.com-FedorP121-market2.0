@@ -17,3 +17,13 @@ class SaveTovarInHiveEvent extends CategoryEvent {
   @override
   List<Object?> get props => [code];
 }
+
+class IndexTransferEvent extends CategoryEvent {
+  final int categoryId;
+  IndexTransferEvent({
+    required this.categoryId,
+  });
+
+  @override
+  List<Object?> get props => [categoryId];
+}

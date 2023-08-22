@@ -4,9 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'repositories/bitrix_repository/export_abstract_bitrix.dart';
 import 'repositories/hive_repository/export_abstract_hive.dart';
+import 'repositories/shared_preferences_repository/export_abstract_shared_preference.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +24,14 @@ void main() async {
   );
 
   GetIt.I.registerLazySingleton<AbstractWorkingWithData>(
-    () => WorkingWithData(),
+    () => WorkingWithDataRepository(),
+  );
+
+  // Получение экземпляра SharedPreferences
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  GetIt.I.registerLazySingleton<AbstractSharedPreferenceRepository>(
+    () => SharedPreferencesRepository(pref: prefs),
   );
 
   var app = const CryptoCurrencesListApp();

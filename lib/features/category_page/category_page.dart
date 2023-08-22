@@ -1,10 +1,7 @@
 import 'package:coin/features/category_page/bloc/category_bloc.dart';
-import 'package:coin/repositories/bitrix_repository/export_abstract_bitrix.dart';
 import 'package:coin/service/export_working_with_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-
 import 'widgets/category_widget.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -12,8 +9,7 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoryBloc = CategoryBloc(
-        GetIt.I<AbstractBitrixRepository>(), GetIt.I<AbstractWorkingWithData>())
+    final categoryBloc = context.read<CategoryBloc>()
       ..add(LoadingBitrixCategoryEvent());
 
     return Scaffold(
@@ -37,10 +33,11 @@ class CategoryPage extends StatelessWidget {
                   final data = listTovars[index];
                   final name = data.categoryName;
                   final imageUrl = data.tovars.elementAt(0).imageUrl[0];
-
+                  final categoryId = data.categoryId;
                   return TovarPreviewWidget(
                     name: name,
                     imageUrl: imageUrl,
+                    categoryId: categoryId,
                   );
                 });
           }
