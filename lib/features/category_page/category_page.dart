@@ -1,9 +1,11 @@
+import 'package:auto_route/annotations.dart';
 import 'package:coin/features/category_page/bloc/category_bloc.dart';
 import 'package:coin/service/export_working_with_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'widgets/category_widget.dart';
 
+@RoutePage()
 class CategoryPage extends StatelessWidget {
   const CategoryPage({super.key});
 

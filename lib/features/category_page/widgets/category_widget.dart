@@ -1,9 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:coin/features/category_page/bloc/category_bloc.dart';
-import 'package:coin/navigation/navigation.dart';
+import 'package:coin/navigation/router.dart';
 
 class TovarPreviewWidget extends StatelessWidget {
   final String name;
@@ -19,7 +17,6 @@ class TovarPreviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoryBloc = context.read<CategoryBloc>();
     final bodySmall = Theme.of(context).textTheme.bodySmall;
     return Card(
       shape: RoundedRectangleBorder(
@@ -45,8 +42,8 @@ class TovarPreviewWidget extends StatelessWidget {
         ),
         TextButton(
             onPressed: () {
-              // categoryBloc.add(IndexTransferEvent(categoryId: categoryId));
-              Navigator.of(context).pushNamed(Navigation.listTovars);
+              AutoRouter.of(context).push(
+                  ListTovarRoute(categoryId: categoryId, nameCategory: name));
             },
             child: Container()),
       ]),

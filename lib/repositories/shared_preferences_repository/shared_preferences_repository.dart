@@ -14,12 +14,12 @@ class SharedPreferencesRepository
   });
 
   @override
-  Future<void> saveTovarSharedPreference(List<Categories> listTovars) async {
+  Future<void> saveTovarShPref(List<Categories> listTovars) async {
     prefs.setString('shared_preferences', jsonEncode(listTovars));
   }
 
   @override
-  Future<List<Categories>> readTovarSharedPreference() async {
+  Future<List<Categories>> readTovarShPref() async {
     final prefData = prefs.getString('shared_preferences');
     List<Categories> listTovar = [];
 

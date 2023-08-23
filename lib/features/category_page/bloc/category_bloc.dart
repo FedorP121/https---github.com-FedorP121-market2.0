@@ -36,14 +36,14 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       final listTovars =
           abstractWorkingWithData.sortCategoryList(listTovarsFromBitrix);
 
-      // записал в SharedPreference
-      abstractSharedPreferenceRepository.saveTovarSharedPreference(listTovars);
+      // записал в SharedPreference все данные из сети
+      abstractSharedPreferenceRepository.saveTovarShPref(listTovars);
 
       // считал с SharedPreference
       final tovarSharedPreference =
-          await abstractSharedPreferenceRepository.readTovarSharedPreference();
+          await abstractSharedPreferenceRepository.readTovarShPref();
 
-      // создал проверку и обходной путь на случай ошибок SharedPreference
+      // создал проверку и обходной путь на случай ошибок в SharedPreference
       if (tovarSharedPreference.isEmpty) {
         // загрузка данных из listTovars которую мы прямиком получили из сети
         return emit(LoadedBitrixState(listTovars: listTovars));
