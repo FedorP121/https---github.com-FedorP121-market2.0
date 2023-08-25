@@ -12,19 +12,22 @@ class AppBarBasketWidget extends StatelessWidget {
       bloc: basketBloc,
       builder: (context, state) {
         if (state is LoadedTrueCheckBasketState) {
-          if (state.availability == false) {
-            IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart));
-          } else {
-            return IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.shopping_cart,
-                  color: Colors.yellow,
-                ));
-          }
+          return IconButton(
+            onPressed: () {
+              // Действия при нажатии на иконку корзины
+            },
+            icon: Icon(
+              Icons.shopping_cart,
+              color: state.availability ? Colors.yellow : null,
+            ),
+          );
         }
         return IconButton(
-            onPressed: () {}, icon: const Icon(Icons.shopping_cart));
+          onPressed: () {
+            // Действия при нажатии на иконку корзины
+          },
+          icon: const Icon(Icons.shopping_cart),
+        );
       },
     );
   }

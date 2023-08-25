@@ -1,3 +1,4 @@
+import 'package:coin/features/basket_page/bloc/basket_bloc.dart';
 import 'package:coin/features/list_tovar_page/bloc/export_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,12 +14,16 @@ class BasketWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final basketBloc = context.read<BasketBloc>();
     final blocTovarsCategories = context.read<TovarsCategoryBloc>();
     return Expanded(
       flex: 4,
       child: ElevatedButton(
         onPressed: maxCountTovar > 0
-            ? () => blocTovarsCategories.add(SaveTovarInBasketEvent(code: code))
+            ? () => {
+                  blocTovarsCategories.add(SaveTovarInBasketEvent(code: code)),
+                  basketBloc.add(CheckTovarInHive())
+                }
             : null,
         child: const Text(maxLines: 1, 'В корзину'),
       ),
