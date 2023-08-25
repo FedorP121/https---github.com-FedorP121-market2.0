@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 class Tovars extends Equatable {
@@ -16,7 +17,8 @@ class TovarDis extends Equatable {
   final String name;
   final double price;
   final int maxCountTovar;
-  final List<String> imageUrl;
+  final String imageUrl;
+  // final List<String> listImageUrl;
   final String description;
   final Characteristics characteristics;
   const TovarDis({
@@ -24,13 +26,21 @@ class TovarDis extends Equatable {
     required this.price,
     required this.maxCountTovar,
     required this.imageUrl,
+    // required this.listImageUrl,
     required this.description,
     required this.characteristics,
   });
 
   @override
-  List<Object?> get props =>
-      [name, price, maxCountTovar, imageUrl, description, characteristics];
+  List<Object?> get props => [
+        name,
+        price,
+        maxCountTovar,
+        imageUrl,
+        description,
+        characteristics,
+        // listImageUrl
+      ];
 }
 
 class Characteristics extends Equatable {

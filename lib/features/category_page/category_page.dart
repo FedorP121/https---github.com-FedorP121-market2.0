@@ -3,7 +3,7 @@ import 'package:coin/features/category_page/bloc/category_bloc.dart';
 import 'package:coin/service/export_working_with_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'widgets/category_widget.dart';
+import 'widgets/export_widgets.dart';
 
 @RoutePage()
 class CategoryPage extends StatelessWidget {
@@ -16,6 +16,9 @@ class CategoryPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          BasketWidget(),
+        ],
         title: const Text('Категории'),
       ),
       body: BlocBuilder<CategoryBloc, CategoryState>(
@@ -34,7 +37,7 @@ class CategoryPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final data = listTovars[index];
                   final name = data.categoryName;
-                  final imageUrl = data.tovars.elementAt(0).imageUrl[0];
+                  final imageUrl = data.tovars.elementAt(0).imageUrl;
                   final categoryId = data.categoryId;
                   return TovarPreviewWidget(
                     name: name,

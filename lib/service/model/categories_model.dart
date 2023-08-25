@@ -36,7 +36,8 @@ class Tovar extends Equatable {
   final String name;
   final double price;
   final int maxCountTovar;
-  final List<String> imageUrl;
+  final String imageUrl;
+  final List<String> listImageUrl;
   final String description;
   final Characteristic characteristics;
   const Tovar({
@@ -45,6 +46,7 @@ class Tovar extends Equatable {
     required this.price,
     required this.maxCountTovar,
     required this.imageUrl,
+    required this.listImageUrl,
     required this.description,
     required this.characteristics,
   });
@@ -57,6 +59,7 @@ class Tovar extends Equatable {
       price,
       maxCountTovar,
       imageUrl,
+      listImageUrl,
       description,
       characteristics,
     ];
@@ -67,8 +70,9 @@ class Tovar extends Equatable {
       'code': code,
       'name': name,
       'price': price,
-      'maxCountTovar': maxCountTovar,
       'imageUrl': imageUrl,
+      'maxCountTovar': maxCountTovar,
+      'listImageUrl': listImageUrl,
       'description': description,
       'characteristics': characteristics.toJson(),
     };
@@ -80,7 +84,8 @@ class Tovar extends Equatable {
       name: json['name'],
       price: json['price'],
       maxCountTovar: json['maxCountTovar'],
-      imageUrl: List<String>.from(json['imageUrl']),
+      imageUrl: json['imageUrl'],
+      listImageUrl: List<String>.from(json['listImageUrl']),
       description: json['description'],
       characteristics: Characteristic.fromJson(json['characteristics']),
     );

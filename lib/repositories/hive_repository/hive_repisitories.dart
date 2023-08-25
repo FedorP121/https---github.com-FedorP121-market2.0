@@ -17,15 +17,33 @@ class HiveRepository implements AbstractHiveRepository {
   }
 
   @override
-  Future<void> saveTovarFromHive(String code) async {
+  Future<void> saveTovarInHive(String code, int countTovar) async {
     registerAdapterHive();
 
-    final box = await Hive.openBox<TovarsForHive>('tovars_box');
-    await box.put(code, TovarsForHive(code: code, countPerson: 4));
+    final basketBox = await Hive.openBox<TovarsForHive>('basket_box');
+    await basketBox.put(
+        code, TovarsForHive(code: code, countPerson: countTovar));
+
+    basketBox.close();
   }
 
   @override
-  Future<void> deleteTovarFromHive() async {}
+  Future<void> deleteTovarInHive() async {}
+
+  @override
+  Future<bool> checkTovarInHive() async {
+    registerAdapterHive();
+    bool availability = true;
+
+    final basketBox = await Hive.openBox<TovarsForHive>('basket_box');
+    if (basketBox.isEmpty) {
+      availability = false;
+    } else {
+      availability = true;
+    }
+    basketBox.close();
+    return availability;
+  }
 }
 
 // регистрация адаптера

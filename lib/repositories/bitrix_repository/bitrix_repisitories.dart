@@ -33,7 +33,10 @@ class BitrixRepository implements AbstractBitrixRepository {
             name: tovar['tovar_name'].toString().replaceAll('&quot;', '"'),
             price: double.parse(tovar['base_price']),
             maxCountTovar: 10, //int.parse(tovar['stock_quantity']),
-            imageUrl: [tovar['detail_picture']],
+            imageUrl: tovar['detail_picture'],
+            listImageUrl: (tovar['photos'] as List<dynamic>).isEmpty
+                ? [tovar['detail_picture']]
+                : List<String>.from(tovar['photos']),
             description: tovar['detail_text'],
             characteristics: const Characteristics(
               width: 100,

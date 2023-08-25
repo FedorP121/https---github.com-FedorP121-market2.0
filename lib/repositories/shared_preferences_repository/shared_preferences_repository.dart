@@ -15,7 +15,7 @@ class SharedPreferencesRepository
 
   @override
   Future<void> saveTovarShPref(List<Categories> listTovars) async {
-    prefs.setString('shared_preferences', jsonEncode(listTovars));
+    await prefs.setString('shared_preferences', jsonEncode(listTovars));
   }
 
   @override

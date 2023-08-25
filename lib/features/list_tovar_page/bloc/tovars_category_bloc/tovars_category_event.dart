@@ -12,3 +12,13 @@ class ReadTovarCategoryEvent extends TovarCategoryEvent {
   @override
   List<Object?> get props => [];
 }
+
+class SaveTovarInBasketEvent extends TovarCategoryEvent {
+  final String code;
+  SaveTovarInBasketEvent({
+    required this.code,
+  });
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}

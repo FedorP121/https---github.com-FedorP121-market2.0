@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/annotations.dart';
+import 'package:coin/features/list_tovar_page/bloc/export_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:coin/service/export_working_with_data.dart';
 
-import 'bloc/tovars_category_bloc.dart';
 import 'view.dart';
 
 @RoutePage()

@@ -11,7 +11,7 @@ class WorkingWithDataRepository implements AbstractWorkingWithData {
 
     // пробегаемся про пришедшему списку из Bitrix и категории записываем
     // в сет только categoryId и categoryName
-    // метод loadTovar() позволяет сразу записать данные в tovars
+    // метод loadTovar() позволяет сразу записать данные в поле tovars
     for (var element in listTovarsFromBitrix) {
       setListTovar.add(Categories(
         categoryId: element.categoryId,
@@ -57,6 +57,7 @@ List<Tovar> loadTovar(List<TovarsBitrix> listTovarsFromBitrix, int categoryId,
         price: element.tovar.price,
         maxCountTovar: element.tovar.maxCountTovar,
         imageUrl: element.tovar.imageUrl,
+        listImageUrl: element.tovar.listImageUrl,
         description: element.tovar.description,
         characteristics: Characteristic(
           width: element.tovar.characteristics.width,

@@ -4,7 +4,9 @@ import 'models/models.dart';
 abstract class AbstractHiveRepository {
   Future<List<TovarsForHive>> loadTovarFromHive();
 
-  Future<void> saveTovarFromHive(String code);
+  Future<void> saveTovarInHive(String code, int countTovar);
 
-  Future<void> deleteTovarFromHive();
+  Future<void> deleteTovarInHive();
+
+  Future<bool> checkTovarInHive();
 }

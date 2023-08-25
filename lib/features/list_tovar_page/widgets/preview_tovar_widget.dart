@@ -14,7 +14,7 @@ class PreviewTovarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String imageURL = tovar.imageUrl[0];
+    final List<String> listImageUrl = tovar.listImageUrl;
     final String name = tovar.name;
     final double price = tovar.price;
     final int maxCountTovar = tovar.maxCountTovar;
@@ -24,7 +24,7 @@ class PreviewTovarWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       child: Column(
         children: [
-          ImageWidget(imageURL: imageURL),
+          ImageWidget(listImageUrl: listImageUrl),
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,7 +35,10 @@ class PreviewTovarWidget extends StatelessWidget {
                 maxCountTovar: maxCountTovar,
               ),
               const Expanded(flex: 1, child: SizedBox()),
-              BasketWidget(code: code),
+              BasketWidget(
+                code: code,
+                maxCountTovar: maxCountTovar,
+              ),
             ],
           )
         ],
