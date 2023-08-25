@@ -35,7 +35,7 @@ class _CryptoCurrencesListAppState extends State<CryptoCurrencesListApp> {
     );
 
     final imageCounterBloc = ImageCounterBloc();
-    final basketBloc = BasketBloc();
+    final basketBloc = BasketBloc(GetIt.I<AbstractHiveRepository>());
 
     return MultiBlocProvider(
       providers: [

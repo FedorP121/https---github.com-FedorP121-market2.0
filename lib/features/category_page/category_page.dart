@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:coin/features/app_bar_widgets/export_widgets.dart';
 import 'package:coin/features/category_page/bloc/category_bloc.dart';
 import 'package:coin/service/export_working_with_data.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,8 @@ class CategoryPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          BasketWidget(),
+        actions: const [
+          AppBarBasketWidget(),
         ],
         title: const Text('Категории'),
       ),

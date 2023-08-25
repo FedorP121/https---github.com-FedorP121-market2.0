@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:coin/features/app_bar_widgets/export_widgets.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:coin/features/list_tovar_page/bloc/export_bloc.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +24,9 @@ class ListTovarPage extends StatelessWidget {
       ..add(ReadTovarCategoryEvent(categoryId: categoryId));
     return Scaffold(
         appBar: AppBar(
+          actions: const [
+            AppBarBasketWidget(),
+          ],
           title: Text(nameCategory),
         ),
         body: BlocBuilder<TovarsCategoryBloc, TovarCategoryState>(

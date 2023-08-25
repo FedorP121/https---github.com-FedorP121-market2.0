@@ -23,7 +23,7 @@ class HiveRepository implements AbstractHiveRepository {
     final basketBox = await Hive.openBox<TovarsForHive>('basket_box');
     await basketBox.put(
         code, TovarsForHive(code: code, countPerson: countTovar));
-
+    // await basketBox.deleteFromDisk();
     basketBox.close();
   }
 
@@ -41,7 +41,9 @@ class HiveRepository implements AbstractHiveRepository {
     } else {
       availability = true;
     }
+    print(availability);
     basketBox.close();
+
     return availability;
   }
 }
